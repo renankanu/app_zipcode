@@ -1,11 +1,11 @@
 class AddressModel {
   String cep;
-  String logadouro;
+  String logradouro;
   String bairro;
 
   AddressModel({
     this.cep,
-    this.logadouro,
+    this.logradouro,
     this.bairro,
   });
 
@@ -13,6 +13,6 @@ class AddressModel {
     if (map == null) return null;
 
     return AddressModel(
-        cep: map['cep'], logadouro: map['logadouro'], bairro: map['bairro']);
+        cep: map['cep'], logradouro: map['logradouro'], bairro: map['bairro']);
   }
 }
