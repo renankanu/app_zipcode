@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:app_zipcode/app/model/address_model.dart';
 import 'package:app_zipcode/app/repository/address_repository.dart';
+import 'package:app_zipcode/app/widgets/shimmer_address.dart';
 import 'package:flutter/material.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -57,23 +58,24 @@ class _HomeScreenState extends State<HomeScreen> {
                 builder: (BuildContext context,
                     AsyncSnapshot<List<AddressModel>> snapshot) {
                   if (!snapshot.hasData) {
-                    return CircularProgressIndicator();
+                    return ShimmerAddress();
                   } else {
                     return Expanded(
                       child: ListView.builder(
                         itemCount: snapshot.data.length,
                         itemBuilder: (_, index) {
                           return Visibility(
-                              visible: snapshot.data.isNotEmpty,
-                              replacement: Text('Sem dados'),
-                              child: ListTile(
-                                leading: Icon(
-                                  Icons.location_city,
-                                  size: 50,
-                                ),
-                                title: Text(snapshot.data[index].logradouro),
-                                subtitle: Text(snapshot.data[index].bairro),
-                              ));
+                            visible: snapshot.data.isNotEmpty,
+                            replacement: Text('Sem dados'),
+                            child: ListTile(
+                              leading: Icon(
+                                Icons.location_city,
+                                size: 50,
+                              ),
+                              title: Text(snapshot.data[index].logradouro),
+                              subtitle: Text(snapshot.data[index].bairro),
+                            ),
+                          );
                         },
                       ),
                     );
